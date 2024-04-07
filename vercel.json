@@ -1,0 +1,23 @@
+{
+  "name": "multimedia-social-media",
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/uploads/(.*)",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000"
+      },
+      "dest": "uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ]
+}
