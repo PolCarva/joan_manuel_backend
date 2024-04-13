@@ -13,11 +13,12 @@ const storage = multer.diskStorage({
 const uploadPicture = multer({
   storage: storage,
   limits: {
-    fileSize: 2 * 1000000, // 1MB
+    fileSize: 2 * 1000000, // 2MB
   },
   fileFilter: function (req, file, cb) {
+    const allowedFileTypes = [".png", ".jpg", ".jpeg", ".avif", ".webp"];
     let ext = path.extname(file.originalname);
-    if (ext !== ".png" && ext !== ".jpg" && ext !== ".jpeg") {
+    if (!allowedFileTypes.includes(ext)) {
       return cb(new Error("File type is not supported"), false);
     }
     cb(null, true);
