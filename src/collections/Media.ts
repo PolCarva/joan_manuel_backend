@@ -5,16 +5,35 @@ const Media: CollectionConfig = {
   upload: {
     staticURL: '/media', // URL estática donde se accederán los medios
     staticDir: 'media', // Directorio donde se guardarán los archivos
-    imageSizes: [ // Solo una configuración de tamaño para preservar la proporción original
+    imageSizes: [
       {
-        name: 'original',
-        width: undefined, // No especificar ancho
-        height: undefined, // No especificar altura
+        name: 'thumbnail',
+        width: 400,
+        height: 300,
+        position: 'centre',
+      },
+      {
+        name: 'card',
+        width: 768,
+        height: 1024,
+        position: 'centre',
+      },
+      {
+        name: 'tablet',
+        width: 1024,
+        // By specifying `undefined` or leaving a height undefined,
+        // the image will be sized to a certain width,
+        // but it will retain its original aspect ratio
+        // and calculate a height automatically.
+        height: undefined,
         position: 'centre',
       },
     ],
-    adminThumbnail: 'original', // Usar la imagen original como thumbnail en admin
-    mimeTypes: ['image/*'], // Aceptar todos los tipos de imágenes
+    adminThumbnail: 'thumbnail',
+    mimeTypes: ['image/*'],
+  },
+  access: {
+    read: () => true,
   },
   fields: [
     {

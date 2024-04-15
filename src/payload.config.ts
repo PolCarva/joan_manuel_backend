@@ -1,5 +1,5 @@
 import path from "path";
-
+import dotenv from "dotenv";
 import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
@@ -10,7 +10,9 @@ import Users from "./collections/Users";
 import Projects from "./collections/Projects";
 import Media from "./collections/Media";
 
+
 export default buildConfig({
+  cors: "*",
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
@@ -25,6 +27,6 @@ export default buildConfig({
   },
   plugins: [payloadCloud()],
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI,
+    url: process.env.DATABASE_URI, // Usa la variable de entorno DATABASE_URI
   }),
 });

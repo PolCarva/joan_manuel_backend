@@ -6,6 +6,10 @@ const Projects: CollectionConfig = {
     useAsTitle: "title",
     defaultColumns: ["title", "type", "project", "year"],
   },
+  access: {
+    read: () => true,
+  },
+
   fields: [
     {
       name: "title",
@@ -85,6 +89,33 @@ const Projects: CollectionConfig = {
       name: "read_more",
       label: "Read More",
       type: "textarea",
+    },
+  ],
+  endpoints: [
+    {
+      path: "/by-type/:type",
+      method: "get",
+      handler: async (req, res, next) => {
+        try {
+          const { type } = req.params;
+          const results = await req.payload.find({
+            collection: "projects",
+            where: {
+              type: {
+                equals: type,
+              },
+            },
+          });
+          res.status(200).json(results);
+        } catch (error) {
+          res
+            .status(500)
+            .json({
+              error: "Internal server error",
+              details: error.toString(),
+            });
+        }
+      },
     },
   ],
 };
