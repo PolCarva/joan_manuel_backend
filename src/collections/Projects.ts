@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { slugField } from "../fields/slug";
 
 const Projects: CollectionConfig = {
   slug: "projects",
@@ -17,7 +18,8 @@ const Projects: CollectionConfig = {
       type: "text",
       required: true,
     },
-    {
+    slugField(),
+     {
       name: "type",
       label: "Type",
       type: "radio",
@@ -108,12 +110,33 @@ const Projects: CollectionConfig = {
           });
           res.status(200).json(results);
         } catch (error) {
-          res
-            .status(500)
-            .json({
-              error: "Internal server error",
-              details: error.toString(),
-            });
+          res.status(500).json({
+            error: "Internal server error",
+            details: error.toString(),
+          });
+        }
+      },
+    },
+    {
+      path: "/by-slug/:slug",
+      method: "get",
+      handler: async (req, res, next) => {
+        try {
+          const { slug } = req.params;
+          const results = await req.payload.find({
+            collection: "projects",
+            where: {
+              slug: {
+                equals: slug,
+              },
+            },
+          });
+          res.status(200).json(results);
+        } catch (error) {
+          res.status(500).json({
+            error: "Internal server error",
+            details: error.toString(),
+          });
         }
       },
     },
