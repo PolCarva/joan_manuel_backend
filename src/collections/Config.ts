@@ -51,6 +51,15 @@ const Config: CollectionConfig = {
       },
     },
     {
+      type: "text",
+      name: "pass",
+      label: "Password",
+      required: true,
+      admin: {
+        condition: (data) => data.type === "about",
+      },
+    },
+    {
       name: "displayName",
       label: "Display Name",
       type: "text",
