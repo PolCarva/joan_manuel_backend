@@ -54,14 +54,6 @@ const Projects: CollectionConfig = {
       },
       required: true,
     },
-    {
-      name: "credits",
-      label: "Credits",
-      type: "textarea",
-      admin: {
-        condition: (data) => data.type === "film",
-      },
-    },
     /* Photo */
     {
       name: "images",
@@ -81,6 +73,11 @@ const Projects: CollectionConfig = {
       ],
     },
     /* Both */
+    {
+      name: "credits",
+      label: "Credits",
+      type: "textarea",
+    },
     {
       name: "description",
       label: "Short Description",

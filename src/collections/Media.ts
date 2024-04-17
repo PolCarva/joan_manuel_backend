@@ -5,7 +5,7 @@ const Media: CollectionConfig = {
   upload: {
     staticURL: '/media', // URL estática donde se accederán los medios
     staticDir: 'media', // Directorio donde se guardarán los archivos
-    imageSizes: [
+    /* imageSizes: [
       {
         name: 'thumbnail',
         width: 400,
@@ -29,8 +29,8 @@ const Media: CollectionConfig = {
         position: 'centre',
       },
     ],
-    adminThumbnail: 'thumbnail',
-    mimeTypes: ['image/*'],
+    adminThumbnail: 'thumbnail', */
+    mimeTypes: ['image/*', 'application/pdf'], 
   },
   access: {
     read: () => true,

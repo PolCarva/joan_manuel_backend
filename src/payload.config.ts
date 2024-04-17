@@ -9,6 +9,7 @@ import { buildConfig } from "payload/config";
 import Users from "./collections/Users";
 import Projects from "./collections/Projects";
 import Media from "./collections/Media";
+import Config from "./collections/Config";
 
 
 export default buildConfig({
@@ -18,7 +19,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Projects, Media],
+  collections: [Users, Projects, Config, Media],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
   },
