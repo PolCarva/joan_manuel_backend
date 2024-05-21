@@ -47,7 +47,7 @@ const Projects: CollectionConfig = {
     /* VIDEO */
     {
       name: "url",
-      label: "Vimeo Link",
+      label: "Video Link",
       type: "text",
       admin: {
         condition: (data) => data.type === "film",
